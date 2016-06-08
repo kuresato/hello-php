@@ -1,7 +1,10 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 header("X-Content-Type-Option: nosniff");
-$pdo = new PDO('sqlite:/tmp/test.db');
+//$pdo = new PDO('sqlite:/tmp/test.db');
+$pdo = new PDO('mysql:dbname=sampledb;host='.getenv('MYSQL_SERVICE_HOST'), 'user1', 'user1');
+$st = $pdo->query("SELECT * FROM sample");
+echo json_encode($st->fetchAll(PDO::FETCH_ASSOC));
 switch($_SERVER['REQUEST_METHOD']){
   case 'GET':
     $st = $pdo->query("SELECT * FROM sample");
@@ -14,7 +17,7 @@ switch($_SERVER['REQUEST_METHOD']){
     break;
   case 'DELETE':
     $st = $pdo->prepare("DELETE FROM sample WHERE key=?");
-    $st->execute([$_GET['key']]);
+    $st->execute($_GET['key']);
     break;
 }
 ?>
