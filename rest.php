@@ -17,4 +17,4 @@ switch($_SERVER['REQUEST_METHOD']){
     $st->execute([$_GET['key']]);
     break;
 }
-
+?>
