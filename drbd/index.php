@@ -14,15 +14,15 @@ print "<div>$DB_HOST</div>\n";
 for ($i = 0; $i < 300; $i++) {
     print  "$i\n";
 
-    $file = @fopen("/data/test.txt", "a+") || die('file open error.');
+    $file = fopen("/data/test.txt", "a+");
     print "<p>file: $file</p>\n";
     if(!$file)  {
         print "file is FALSE\n";
         break;
     }
-    //flock($file, LOCK_EX);
+    flock($file, LOCK_EX);
     fputs($file, "$i\n");
-    //flock($file, LOCK_UN);
+    flock($file, LOCK_UN);
     fclose($file);
 
     $pdo = new PDO('mysql:dbname=sampledb;host='.$DB_HOST, $DB_USER, $DB_PASS);
