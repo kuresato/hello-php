@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: text/html; charset=UTF-8");
 header("X-Content-Type-Option: nosniff");
 
 $DB_HOST=getenv('MYSQL_SERVICE_HOST');
@@ -10,7 +10,8 @@ print "<html><body>\n";
 print "<div>$DB_HOST</div>\n";
 
 $file = @fopen("/data/test.txt", "a+") || die('file open error.');
-flock($file, LOCK_EX);
+print "<p>file: $file</p>\n";
+//flock($file, LOCK_EX);
 
 $pdo = new PDO('mysql:dbname=sampledb;host='.$DB_HOST, $DB_USER, $DB_PASS);
 
@@ -24,7 +25,7 @@ for ($i = 0; $i < 300; $i++) {
     sleep(1);
 }
 
-flock($file, LOCK_UN);
+//flock($file, LOCK_UN);
 
 print "</body></html>\n";
 ?>
