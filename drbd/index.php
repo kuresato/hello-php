@@ -9,7 +9,7 @@ $DB_PASS='user1';
 print "<html><body>\n";
 print "<div>$DB_HOST</div>\n";
 
-$file = fopen("/data/test.txt", "a+");
+$file = @fopen("/data/test.txt", "a+") || die('file open error.');
 flock($file, LOCK_EX);
 
 $pdo = new PDO('mysql:dbname=sampledb;host='.$DB_HOST, $DB_USER, $DB_PASS);
