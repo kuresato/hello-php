@@ -9,7 +9,8 @@ $DB_PASS='user1';
 print "<html><body>\n";
 print "<div>$DB_HOST</div>\n";
 
-
+date_default_timezone_set("Asia/Tokyo");
+print date("Y/m/d H:i:s")."\n";
 
 for ($i = 0; $i < 300; $i++) {
     print  "$i\n";
@@ -21,7 +22,7 @@ for ($i = 0; $i < 300; $i++) {
         break;
     }
     flock($file, LOCK_EX);
-    fputs($file, "$i\n");
+    fputs($file, "$i\t".date("Y/m/d H:i:s")."\n");
     flock($file, LOCK_UN);
     fclose($file);
 
