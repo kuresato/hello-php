@@ -9,7 +9,7 @@
 <?php
 echo "Logging.";                                                               
 $stdout = fopen('php://stdout', 'w');                                           
-fputs($stdout, "this is debug message $_GET[mes]");                                      
+fputs($stdout, "this is debug message $_GET[mes]\n");                                      
 ?>
     </pre>
   </body>
