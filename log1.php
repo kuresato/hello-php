@@ -10,6 +10,7 @@
 echo "Logging.";                                                               
 $stdout = fopen('php://stdout', 'w');                                           
 fputs($stdout, "this is debug message $_GET[mes]\n");                                      
+syslog(LOG_INFO, "this is syslog message $_GET[mes]");
 ?>
     </pre>
   </body>
